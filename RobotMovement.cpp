@@ -307,7 +307,6 @@ void RobotMovement::test(unsigned long duration, int groupNumber) {
   lowerCap.stopSequence();
  
 }
-
 void RobotMovement::initialization(unsigned long duration,  int robotAngularPosition){
   float k = duration/60000.0;
 
@@ -353,8 +352,6 @@ void RobotMovement::initialization(unsigned long duration,  int robotAngularPosi
   upperCap.wait(4000*k);
   upperCap.stopSequence();
 }
-
-
 void RobotMovement::calibration(unsigned long duration){
   float k = duration/3000.0;
 
@@ -378,7 +375,6 @@ void RobotMovement::calibration(unsigned long duration){
   upperCap.moveDown(60, 3000*k);
   upperCap.stopSequence();
 }
-
 
 void RobotMovement::idle(unsigned long duration) { 
   float k = duration/5000.0;
@@ -519,7 +515,10 @@ void RobotMovement::beEmbarassedShort3Right(unsigned long duration, int robotAng
   //HEAD EMBARASSED
   head.startSequence(); 
   head.moveLeft(20,2000*k);
-  head.wait(8000*k);
+  for (int i=0;i<8;i++){ 
+    head.moveLeft(40,500*k);
+    head.moveLeft(20,500*k);
+  }
   head.stopSequence();
 
   //UPPERCAP EMBARASSED
@@ -557,7 +556,10 @@ void RobotMovement::beEmbarassedShort2Right(unsigned long duration, int robotAng
   //HEAD EMBARASSED
   head.startSequence(); 
   head.moveLeft(15,2000*k);
-  head.wait(8000*k);
+  for (int i=0;i<8;i++){ 
+    head.moveLeft(35,500*k);
+    head.moveLeft(15,500*k);
+  }
   head.stopSequence();
 
   //UPPERCAP EMBARASSED
@@ -596,7 +598,10 @@ void RobotMovement::beEmbarassedShort1Right(unsigned long duration, int robotAng
   //HEAD EMBARASSED
   head.startSequence(); 
   head.moveLeft(10,2000*k);
-  head.wait(8000*k);
+  for (int i=0;i<8;i++){ 
+    head.moveLeft(30,500*k);
+    head.moveLeft(10,500*k);
+  }
   head.stopSequence();
 
   //UPPERCAP EMBARASSED
@@ -732,7 +737,10 @@ void RobotMovement::beEmbarassedShort3Left(unsigned long duration, int robotAngu
   //HEAD EMBARASSED
   head.startSequence(); 
   head.moveRight(20,2000*k);     ///modificato  questo 
-  head.wait(8000*k);
+  for (int i=0;i<8;i++){ 
+    head.moveRight(40,500*k);
+    head.moveRight(20,500*k);
+  }
   head.stopSequence();
 
   //UPPERCAP EMBARASSED
@@ -771,7 +779,10 @@ void RobotMovement::beEmbarassedShort2Left(unsigned long duration, int robotAngu
   //HEAD EMBARASSED
   head.startSequence(); 
   head.moveRight(15,2000*k);     ///modificato  questo 
-  head.wait(8000*k);
+  for (int i=0;i<8;i++){ 
+    head.moveRight(35,500*k);
+    head.moveRight(15,500*k);
+  }
   head.stopSequence();
 
   //UPPERCAP EMBARASSED
@@ -810,7 +821,10 @@ void RobotMovement::beEmbarassedShort1Left(unsigned long duration, int robotAngu
   //HEAD EMBARASSED
   head.startSequence(); 
   head.moveRight(10,2000*k);     ///modificato  questo 
-  head.wait(8000*k);
+  for (int i=0;i<8;i++){ 
+    head.moveRight(30,500*k);
+    head.moveRight(10,500*k);
+  }
   head.stopSequence();
 
   //UPPERCAP EMBARASSED
@@ -857,22 +871,22 @@ void RobotMovement::beNeutralShort3Left(unsigned long duration, int robotAngular
   //UPPERCAP NEUTRAL SHORT    //angles and moveup modified
   upperCap.startSequence(); 
   upperCap.wait(2000*k);
+  upperCap.moveDown(15,1000*k);
   upperCap.moveDown(10,1000*k);
-  upperCap.moveDown(5,1000*k);
   upperCap.wait(2000*k);
+  upperCap.moveDown(15,1000*k);
   upperCap.moveDown(10,1000*k);
-  upperCap.moveDown(5,1000*k);
   upperCap.wait(2000*k);
   upperCap.stopSequence();
 
   //LOWERCAP NEUTRAL SHORT
   lowerCap.startSequence(); 
   lowerCap.wait(2000*k);
+  lowerCap.moveUp(15,1000*k);
   lowerCap.moveUp(10,1000*k);
-  lowerCap.moveUp(5,1000*k);
   lowerCap.wait(2000*k);
+  lowerCap.moveUp(15,1000*k);
   lowerCap.moveUp(10,1000*k);
-  lowerCap.moveUp(5,1000*k);
   lowerCap.wait(2000*k);
   lowerCap.stopSequence();
 } // COMPLETED
@@ -998,22 +1012,22 @@ void RobotMovement::beNeutralShort3Right(unsigned long duration, int robotAngula
   //UPPERCAP NEUTRAL SHORT    //angles and moveup modified
   upperCap.startSequence(); 
   upperCap.wait(2000*k);
+  upperCap.moveDown(15,1000*k);
   upperCap.moveDown(10,1000*k);
-  upperCap.moveDown(5,1000*k);
   upperCap.wait(2000*k);
+  upperCap.moveDown(15,1000*k);
   upperCap.moveDown(10,1000*k);
-  upperCap.moveDown(5,1000*k);
   upperCap.wait(2000*k);
   upperCap.stopSequence();
 
   //LOWERCAP NEUTRAL SHORT
   lowerCap.startSequence(); 
   lowerCap.wait(2000*k);
+  lowerCap.moveUp(15,1000*k);
   lowerCap.moveUp(10,1000*k);
-  lowerCap.moveUp(5,1000*k);
   lowerCap.wait(2000*k);
+  lowerCap.moveUp(15,1000*k);
   lowerCap.moveUp(10,1000*k);
-  lowerCap.moveUp(5,1000*k);
   lowerCap.wait(2000*k);
   lowerCap.stopSequence();
 } // COMPLETED
@@ -1315,7 +1329,45 @@ void RobotMovement::beHappyLeft(unsigned long duration, int robotAngularPosition
 }
 void RobotMovement::beHappyShort3Left(unsigned long duration, int robotAngularPosition) {
   float k = duration/10000.0;
+  
+  //LOWERBODY SHORT
+  lowerBody.startSequence(robotAngularPosition); 
+  lowerBody.moveRight(90,1000*k);
+  for (int i=0; i<2; i++){
+    lowerBody.moveLeft(90,1500*k);
+    lowerBody.moveRight(90,1500*k);
+  }
+  lowerBody.wait(3000*k);
+  lowerBody.stopSequence();
 
+  //HEAD SHORT
+  head.startSequence();  
+  head.moveLeft(90,1000*k);
+  for (int i=0; i<2; i++){  
+    head.moveRight(90,1500*k);
+    head.moveLeft(90,1500*k);
+  }
+  head.wait(3000*k);
+  head.stopSequence();
+
+  //UPPERCAP SHORT
+  upperCap.startSequence(); 
+  upperCap.wait(7000*k);
+  upperCap.moveDown(30,1000*k);
+  upperCap.moveDown(10,1000*k);
+  upperCap.moveDown(20,1000*k);
+  upperCap.stopSequence();
+
+  //LOWERCAP SHORT
+  lowerCap.startSequence(); 
+  lowerCap.wait(7000*k);
+  lowerCap.moveUp(30,1000*k);
+  lowerCap.moveUp(10,1000*k);
+  lowerCap.moveUp(20,1000*k);
+  lowerCap.stopSequence();
+
+
+/*
   //LOWERBODY HAPPY
   lowerBody.startSequence(robotAngularPosition); 
   lowerBody.moveLeft(25,2000*k);
@@ -1368,7 +1420,7 @@ void RobotMovement::beHappyShort3Left(unsigned long duration, int robotAngularPo
     lowerCap.moveUp(10,1000*k);    
   }
   lowerCap.stopSequence();
-
+*/
 } // COMPLETED
 void RobotMovement::beHappyShort2Left(unsigned long duration, int robotAngularPosition) {
   float k = duration/10000.0;
@@ -1940,15 +1992,13 @@ void RobotMovement:: beSadShort3Right(unsigned long duration, int robotAngularPo
   //UPPERCAP SAD
   upperCap.startSequence();
   upperCap.wait(7500*k);
-  upperCap.moveDown(20,1500*k); 
-  upperCap.moveDown(10,1000*k);   
+  upperCap.moveDown(60,2500*k);    
   upperCap.stopSequence();
 
   //LOWERCAP SAD
   lowerCap.startSequence();
   lowerCap.wait(7500*k);
-  lowerCap.moveUp(20,1500*k); 
-  lowerCap.moveUp(10,1000*k);  
+  lowerCap.moveUp(40,2500*k);  
   lowerCap.stopSequence();
 } // COMPLETED
 void RobotMovement:: beSadShort2Right(unsigned long duration, int robotAngularPosition) { 
@@ -1978,15 +2028,13 @@ void RobotMovement:: beSadShort2Right(unsigned long duration, int robotAngularPo
   //UPPERCAP SAD
   upperCap.startSequence();
   upperCap.wait(7500*k);
-  upperCap.moveDown(20,1500*k); 
-  upperCap.moveDown(10,1000*k);   
+  upperCap.moveDown(60,2500*k);  
   upperCap.stopSequence();
 
   //LOWERCAP SAD
   lowerCap.startSequence();
   lowerCap.wait(7500*k);
-  lowerCap.moveUp(20,1500*k); 
-  lowerCap.moveUp(10,1000*k);  
+  lowerCap.moveUp(40,2500*k); 
   lowerCap.stopSequence();
 } // COMPLETED
 void RobotMovement:: beSadShort1Right(unsigned long duration, int robotAngularPosition) { 
@@ -2016,13 +2064,13 @@ void RobotMovement:: beSadShort1Right(unsigned long duration, int robotAngularPo
   //UPPERCAP SAD
   upperCap.startSequence();
   upperCap.wait(7500*k);
-  upperCap.moveDown(20,2500*k); 
+  upperCap.moveDown(60,2500*k); 
   upperCap.stopSequence();
 
   //LOWERCAP SAD
   lowerCap.startSequence();
   lowerCap.wait(7500*k);
-  lowerCap.moveUp(20,2500*k);  
+  lowerCap.moveUp(40,2500*k); 
   lowerCap.stopSequence();
 } // COMPLETED
 
@@ -2135,15 +2183,13 @@ void RobotMovement:: beSadShort3Left(unsigned long duration, int robotAngularPos
   //UPPERCAP SAD
   upperCap.startSequence();
   upperCap.wait(7500*k);
-  upperCap.moveDown(20,1500*k); 
-  upperCap.moveDown(10,1000*k);   
+  upperCap.moveDown(60,2500*k);   
   upperCap.stopSequence();
 
   //LOWERCAP SAD
   lowerCap.startSequence();
   lowerCap.wait(7500*k);
-  lowerCap.moveUp(20,1500*k); 
-  lowerCap.moveUp(10,1000*k);  
+  lowerCap.moveUp(40,2500*k); 
   lowerCap.stopSequence();
 } // COMPLETED
 void RobotMovement:: beSadShort2Left(unsigned long duration, int robotAngularPosition) { 
@@ -2173,15 +2219,13 @@ void RobotMovement:: beSadShort2Left(unsigned long duration, int robotAngularPos
   //UPPERCAP SAD
   upperCap.startSequence();
   upperCap.wait(7500*k);
-  upperCap.moveDown(20,1500*k); 
-  upperCap.moveDown(10,1000*k);   
+  upperCap.moveDown(60,2500*k);    
   upperCap.stopSequence();
 
   //LOWERCAP SAD
   lowerCap.startSequence();
   lowerCap.wait(7500*k);
-  lowerCap.moveUp(20,1500*k); 
-  lowerCap.moveUp(10,1000*k);  
+  lowerCap.moveUp(40,2500*k); 
   lowerCap.stopSequence();
 } // COMPLETED
 void RobotMovement:: beSadShort1Left(unsigned long duration, int robotAngularPosition) { 
@@ -2211,13 +2255,13 @@ void RobotMovement:: beSadShort1Left(unsigned long duration, int robotAngularPos
   //UPPERCAP SAD
   upperCap.startSequence();
   upperCap.wait(7500*k);
-  upperCap.moveDown(20,2500*k); 
+  upperCap.moveDown(60,2500*k); 
   upperCap.stopSequence();
 
   //LOWERCAP SAD
   lowerCap.startSequence();
   lowerCap.wait(7500*k);
-  lowerCap.moveUp(20,2500*k);  
+  lowerCap.moveUp(40,2500*k); 
   lowerCap.stopSequence();
 } // COMPLETED
 
@@ -2910,8 +2954,8 @@ void RobotMovement::beCautiousShort3Left(unsigned long duration, int robotAngula
   upperCap.startSequence();
   upperCap.moveDown(40,4000*k);          //chiedo max angolo
   for (int j=0;j<2;j++){           //3000*2=6000
-    upperCap.moveDown(55,1000*k); 
-    upperCap.moveDown(50,1000*k);
+    upperCap.moveDown(20,1000*k); 
+    upperCap.moveDown(35,1000*k);
     upperCap.goIdle(1000*k);    
   }
   upperCap.stopSequence();
@@ -2963,8 +3007,8 @@ void RobotMovement::beCautiousShort2Left(unsigned long duration, int robotAngula
   upperCap.startSequence();
   upperCap.moveDown(40,4000*k);          //chiedo max angolo
   for (int j=0;j<2;j++){           //3000*2=6000
-    upperCap.moveDown(55,1000*k); 
-    upperCap.moveDown(50,1000*k);
+    upperCap.moveDown(20,1000*k); 
+    upperCap.moveDown(35,1000*k);
     upperCap.goIdle(1000*k);    
   }
   upperCap.stopSequence();
@@ -3016,8 +3060,8 @@ void RobotMovement::beCautiousShort1Left(unsigned long duration, int robotAngula
   upperCap.startSequence();
   upperCap.moveDown(40,4000*k);          //chiedo max angolo
   for (int j=0;j<2;j++){           //3000*2=6000
-    upperCap.moveDown(55,1000*k); 
-    upperCap.moveDown(50,1000*k);
+    upperCap.moveDown(20,1000*k); 
+    upperCap.moveDown(35,1000*k);
     upperCap.goIdle(1000*k);    
   }
   upperCap.stopSequence();
@@ -3188,8 +3232,8 @@ void RobotMovement::beCautiousShort3Right(unsigned long duration, int robotAngul
   upperCap.startSequence();
   upperCap.moveDown(40,4000*k);          //chiedo max angolo
   for (int j=0;j<2;j++){           //3000*2=6000
-    upperCap.moveDown(55,1000*k); 
-    upperCap.moveDown(50,1000*k);
+    upperCap.moveDown(20,1000*k); 
+    upperCap.moveDown(35,1000*k);
     upperCap.goIdle(1000*k);    
   }
   upperCap.stopSequence();
@@ -3241,8 +3285,8 @@ void RobotMovement::beCautiousShort2Right(unsigned long duration, int robotAngul
   upperCap.startSequence();
   upperCap.moveDown(40,4000*k);          //chiedo max angolo
   for (int j=0;j<2;j++){           //3000*2=6000
-    upperCap.moveDown(55,1000*k); 
-    upperCap.moveDown(50,1000*k);
+    upperCap.moveDown(20,1000*k); 
+    upperCap.moveDown(35,1000*k);
     upperCap.goIdle(1000*k);    
   }
   upperCap.stopSequence();
@@ -3294,8 +3338,8 @@ void RobotMovement::beCautiousShort1Right(unsigned long duration, int robotAngul
   upperCap.startSequence();
   upperCap.moveDown(40,4000*k);          //chiedo max angolo
   for (int j=0;j<2;j++){           //3000*2=6000
-    upperCap.moveDown(55,1000*k); 
-    upperCap.moveDown(50,1000*k);
+    upperCap.moveDown(20,1000*k); 
+    upperCap.moveDown(35,1000*k);
     upperCap.goIdle(1000*k);    
   }
   upperCap.stopSequence();
@@ -3445,27 +3489,27 @@ void RobotMovement::beAngryShort3Left(unsigned long duration, int robotAngularPo
   //UPPERCAP ANGRY
   upperCap.startSequence(); 
   upperCap.wait(2500*k);
-  upperCap.moveDown(20,250*k);  
-  upperCap.moveDown(10,250*k);//1
+  upperCap.moveDown(30,250*k);  
+  upperCap.moveDown(20,250*k);//1
   upperCap.wait(3000*k);
-  upperCap.moveDown(20,250*k);  
-  upperCap.moveDown(10,250*k);//2
+  upperCap.moveDown(30,250*k);  
+  upperCap.moveDown(20,250*k);//2
   upperCap.wait(3000*k);
-  upperCap.moveDown(20,250*k);  
-  upperCap.moveDown(10,250*k);//3
+  upperCap.moveDown(30,250*k);  
+  upperCap.moveDown(20,250*k);//3
   upperCap.stopSequence();
 
   //LOWERCAP ANGRY
   lowerCap.startSequence();
   lowerCap.wait(2500*k);
-  lowerCap.moveUp(10,250*k);
-  lowerCap.moveUp(5,250*k); //1
+  lowerCap.moveUp(20,250*k);
+  lowerCap.moveUp(15,250*k); //1
   lowerCap.wait(3000*k);
-  lowerCap.moveUp(10,250*k);  
-  lowerCap.moveUp(5,250*k);//2
+  lowerCap.moveUp(20,250*k);  
+  lowerCap.moveUp(15,250*k);//2
   lowerCap.wait(3000*k);
-  lowerCap.moveUp(10,250*k);  
-  lowerCap.moveUp(5,250*k);//3
+  lowerCap.moveUp(20,250*k);  
+  lowerCap.moveUp(15,250*k);//3
   lowerCap.stopSequence();
 } // COMPLETED 
 void RobotMovement::beAngryShort2Left(unsigned long duration, int robotAngularPosition) {
@@ -3507,27 +3551,27 @@ void RobotMovement::beAngryShort2Left(unsigned long duration, int robotAngularPo
   //UPPERCAP ANGRY
   upperCap.startSequence(); 
   upperCap.wait(2500*k);
-  upperCap.moveDown(20,250*k);  
-  upperCap.moveDown(10,250*k);//1
+  upperCap.moveDown(30,250*k);  
+  upperCap.moveDown(20,250*k);//1
   upperCap.wait(3000*k);
-  upperCap.moveDown(20,250*k);  
-  upperCap.moveDown(10,250*k);//2
+  upperCap.moveDown(30,250*k);  
+  upperCap.moveDown(20,250*k);//2
   upperCap.wait(3000*k);
-  upperCap.moveDown(20,250*k);  
-  upperCap.moveDown(10,250*k);//3
+  upperCap.moveDown(30,250*k);  
+  upperCap.moveDown(20,250*k);//3
   upperCap.stopSequence();
 
   //LOWERCAP ANGRY
   lowerCap.startSequence();
   lowerCap.wait(2500*k);
-  lowerCap.moveUp(10,250*k);
-  lowerCap.moveUp(5,250*k); //1
+  lowerCap.moveUp(20,250*k);
+  lowerCap.moveUp(15,250*k); //1
   lowerCap.wait(3000*k);
-  lowerCap.moveUp(10,250*k);  
-  lowerCap.moveUp(5,250*k);//2
+  lowerCap.moveUp(20,250*k);  
+  lowerCap.moveUp(15,250*k);//2
   lowerCap.wait(3000*k);
-  lowerCap.moveUp(10,250*k);  
-  lowerCap.moveUp(5,250*k);//3
+  lowerCap.moveUp(20,250*k);  
+  lowerCap.moveUp(15,250*k);//3
   lowerCap.stopSequence();
 } // COMPLETED 
 void RobotMovement::beAngryShort1Left(unsigned long duration, int robotAngularPosition) {
@@ -3569,27 +3613,27 @@ void RobotMovement::beAngryShort1Left(unsigned long duration, int robotAngularPo
   //UPPERCAP ANGRY
   upperCap.startSequence(); 
   upperCap.wait(2500*k);
-  upperCap.moveDown(20,250*k);  
-  upperCap.moveDown(10,250*k);//1
+  upperCap.moveDown(30,250*k);  
+  upperCap.moveDown(20,250*k);//1
   upperCap.wait(3000*k);
-  upperCap.moveDown(20,250*k);  
-  upperCap.moveDown(10,250*k);//2
+  upperCap.moveDown(30,250*k);  
+  upperCap.moveDown(20,250*k);//2
   upperCap.wait(3000*k);
-  upperCap.moveDown(20,250*k);  
-  upperCap.moveDown(10,250*k);//3
+  upperCap.moveDown(30,250*k);  
+  upperCap.moveDown(20,250*k);//3
   upperCap.stopSequence();
 
   //LOWERCAP ANGRY
   lowerCap.startSequence();
   lowerCap.wait(2500*k);
-  lowerCap.moveUp(10,250*k);
-  lowerCap.moveUp(5,250*k); //1
+  lowerCap.moveUp(20,250*k);
+  lowerCap.moveUp(15,250*k); //1
   lowerCap.wait(3000*k);
-  lowerCap.moveUp(10,250*k);  
-  lowerCap.moveUp(5,250*k);//2
+  lowerCap.moveUp(20,250*k);  
+  lowerCap.moveUp(15,250*k);//2
   lowerCap.wait(3000*k);
-  lowerCap.moveUp(10,250*k);  
-  lowerCap.moveUp(5,250*k);//3
+  lowerCap.moveUp(20,250*k);  
+  lowerCap.moveUp(15,250*k);//3
   lowerCap.stopSequence();
 } // COMPLETED 
 
@@ -3726,27 +3770,27 @@ void RobotMovement::beAngryShort3Right(unsigned long duration, int robotAngularP
   //UPPERCAP ANGRY
   upperCap.startSequence(); 
   upperCap.wait(2500*k);
-  upperCap.moveDown(20,250*k);  
-  upperCap.moveDown(10,250*k);//1
+  upperCap.moveDown(30,250*k);  
+  upperCap.moveDown(20,250*k);//1
   upperCap.wait(3000*k);
-  upperCap.moveDown(20,250*k);  
-  upperCap.moveDown(10,250*k);//2
+  upperCap.moveDown(30,250*k);  
+  upperCap.moveDown(20,250*k);//2
   upperCap.wait(3000*k);
-  upperCap.moveDown(20,250*k);  
-  upperCap.moveDown(10,250*k);//3
+  upperCap.moveDown(30,250*k);  
+  upperCap.moveDown(20,250*k);//3
   upperCap.stopSequence();
 
   //LOWERCAP ANGRY
   lowerCap.startSequence();
   lowerCap.wait(2500*k);
-  lowerCap.moveUp(10,250*k);
-  lowerCap.moveUp(5,250*k); //1
+  lowerCap.moveUp(20,250*k);
+  lowerCap.moveUp(15,250*k); //1
   lowerCap.wait(3000*k);
-  lowerCap.moveUp(10,250*k);  
-  lowerCap.moveUp(5,250*k);//2
+  lowerCap.moveUp(20,250*k);  
+  lowerCap.moveUp(15,250*k);//2
   lowerCap.wait(3000*k);
-  lowerCap.moveUp(10,250*k);  
-  lowerCap.moveUp(5,250*k);//3
+  lowerCap.moveUp(20,250*k);  
+  lowerCap.moveUp(15,250*k);//3
   lowerCap.stopSequence();
 } // COMPLETED
 void RobotMovement::beAngryShort2Right(unsigned long duration, int robotAngularPosition) {
@@ -3787,27 +3831,27 @@ void RobotMovement::beAngryShort2Right(unsigned long duration, int robotAngularP
   //UPPERCAP ANGRY
   upperCap.startSequence(); 
   upperCap.wait(2500*k);
-  upperCap.moveDown(20,250*k);  
-  upperCap.moveDown(10,250*k);//1
+  upperCap.moveDown(30,250*k);  
+  upperCap.moveDown(20,250*k);//1
   upperCap.wait(3000*k);
-  upperCap.moveDown(20,250*k);  
-  upperCap.moveDown(10,250*k);//2
+  upperCap.moveDown(30,250*k);  
+  upperCap.moveDown(20,250*k);//2
   upperCap.wait(3000*k);
-  upperCap.moveDown(20,250*k);  
-  upperCap.moveDown(10,250*k);//3
+  upperCap.moveDown(30,250*k);  
+  upperCap.moveDown(20,250*k);//3
   upperCap.stopSequence();
 
   //LOWERCAP ANGRY
   lowerCap.startSequence();
   lowerCap.wait(2500*k);
-  lowerCap.moveUp(10,250*k);
-  lowerCap.moveUp(5,250*k); //1
+  lowerCap.moveUp(20,250*k);
+  lowerCap.moveUp(15,250*k); //1
   lowerCap.wait(3000*k);
-  lowerCap.moveUp(10,250*k);  
-  lowerCap.moveUp(5,250*k);//2
+  lowerCap.moveUp(20,250*k);  
+  lowerCap.moveUp(15,250*k);//2
   lowerCap.wait(3000*k);
-  lowerCap.moveUp(10,250*k);  
-  lowerCap.moveUp(5,250*k);//3
+  lowerCap.moveUp(20,250*k);  
+  lowerCap.moveUp(15,250*k);//3
   lowerCap.stopSequence();
 } // COMPLETED
 void RobotMovement::beAngryShort1Right(unsigned long duration, int robotAngularPosition) {
@@ -3848,27 +3892,27 @@ void RobotMovement::beAngryShort1Right(unsigned long duration, int robotAngularP
   //UPPERCAP ANGRY
   upperCap.startSequence(); 
   upperCap.wait(2500*k);
-  upperCap.moveDown(20,250*k);  
-  upperCap.moveDown(10,250*k);//1
+  upperCap.moveDown(30,250*k);  
+  upperCap.moveDown(20,250*k);//1
   upperCap.wait(3000*k);
-  upperCap.moveDown(20,250*k);  
-  upperCap.moveDown(10,250*k);//2
+  upperCap.moveDown(30,250*k);  
+  upperCap.moveDown(20,250*k);//2
   upperCap.wait(3000*k);
-  upperCap.moveDown(20,250*k);  
-  upperCap.moveDown(10,250*k);//3
+  upperCap.moveDown(30,250*k);  
+  upperCap.moveDown(20,250*k);//3
   upperCap.stopSequence();
 
   //LOWERCAP ANGRY
   lowerCap.startSequence();
   lowerCap.wait(2500*k);
-  lowerCap.moveUp(10,250*k);
-  lowerCap.moveUp(5,250*k); //1
+  lowerCap.moveUp(20,250*k);
+  lowerCap.moveUp(15,250*k); //1
   lowerCap.wait(3000*k);
-  lowerCap.moveUp(10,250*k);  
-  lowerCap.moveUp(5,250*k);//2
+  lowerCap.moveUp(20,250*k);  
+  lowerCap.moveUp(15,250*k);//2
   lowerCap.wait(3000*k);
-  lowerCap.moveUp(10,250*k);  
-  lowerCap.moveUp(5,250*k);//3
+  lowerCap.moveUp(20,250*k);  
+  lowerCap.moveUp(15,250*k);//3
   lowerCap.stopSequence();
 } // COMPLETED
 
@@ -3990,8 +4034,8 @@ void RobotMovement::beAnnoyedShort3Left(unsigned long duration, int robotAngular
   lowerCap.startSequence();
   for (int i=0;i<6;i++){       
     lowerCap.wait(2000*k);
-    lowerCap.moveUp(20,1500*k);
-    lowerCap.moveUp(15,1500*k);
+    lowerCap.moveUp(40,1500*k);
+    lowerCap.moveUp(35,1500*k);
   }
   lowerCap.stopSequence();
 } // COMPLETED
@@ -4036,8 +4080,8 @@ void RobotMovement::beAnnoyedShort2Left(unsigned long duration, int robotAngular
   lowerCap.startSequence();
   for (int i=0;i<6;i++){       
     lowerCap.wait(2000*k);
-    lowerCap.moveUp(15,1500*k);
-    lowerCap.moveUp(10,1500*k);
+    lowerCap.moveUp(35,1500*k);
+    lowerCap.moveUp(30,1500*k);
   }
   lowerCap.stopSequence();
 } // COMPLETED
@@ -4082,8 +4126,8 @@ void RobotMovement::beAnnoyedShort1Left(unsigned long duration, int robotAngular
   lowerCap.startSequence();
   for (int i=0;i<6;i++){       
     lowerCap.wait(2000*k);
-    lowerCap.moveUp(10,1500*k);
-    lowerCap.moveUp(5,1500*k);
+    lowerCap.moveUp(30,1500*k);
+    lowerCap.moveUp(25,1500*k);
   }
   lowerCap.stopSequence();
 } // COMPLETED
@@ -4205,8 +4249,8 @@ void RobotMovement::beAnnoyedShort3Right(unsigned long duration, int robotAngula
   lowerCap.startSequence();
   for (int i=0;i<6;i++){       
     lowerCap.wait(2000*k);
-    lowerCap.moveUp(20,1500*k);
-    lowerCap.moveUp(15,1500*k);
+    lowerCap.moveUp(40,1500*k);
+    lowerCap.moveUp(35,1500*k);
   }
   lowerCap.stopSequence();
 } // COMPLETED 
@@ -4251,8 +4295,8 @@ void RobotMovement::beAnnoyedShort2Right(unsigned long duration, int robotAngula
   lowerCap.startSequence();
   for (int i=0;i<6;i++){       
     lowerCap.wait(2000*k);
-    lowerCap.moveUp(15,1500*k);
-    lowerCap.moveUp(10,1500*k);
+    lowerCap.moveUp(35,1500*k);
+    lowerCap.moveUp(30,1500*k);
   }
   lowerCap.stopSequence();
 } // COMPLETED
@@ -4297,8 +4341,8 @@ void RobotMovement::beAnnoyedShort1Right(unsigned long duration, int robotAngula
   lowerCap.startSequence();
   for (int i=0;i<6;i++){       
     lowerCap.wait(2000*k);
-    lowerCap.moveUp(10,1500*k);
-    lowerCap.moveUp(5,1500*k);
+    lowerCap.moveUp(30,1500*k);
+    lowerCap.moveUp(25,1500*k);
   }
   lowerCap.stopSequence();
 } // COMPLETED

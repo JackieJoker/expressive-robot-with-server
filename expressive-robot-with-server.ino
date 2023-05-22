@@ -18,7 +18,7 @@ int timeIdle = 3000;
 bool emotionFinished = true;
 bool goIdle = true;
 
-int groupNumber = 4;
+int groupNumber = 6;
 int intensity = 3;
 bool shortMovement = true;
 
