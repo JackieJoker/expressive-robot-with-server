@@ -86,7 +86,7 @@ class RobotMovement {
     void beNeutralShort3Right(unsigned long duration, int robotAngularPosition);     
 
     void beEmbarassedShort4Right(unsigned long duration, int robotAngularPosition);      
-
+    void beEmbarassedShort4Left(unsigned long duration, int robotAngularPosition);
   public:
     RobotMovement();
     
