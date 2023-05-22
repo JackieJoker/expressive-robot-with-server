@@ -1,4 +1,6 @@
 #include "ServerUtilities.h"
+
+String serialText = "";
 /*
 const char* ssid = "iPhone di Danilo";
 const char* password = "danilo99";
@@ -9,12 +11,10 @@ const char* password = "CIAOCIAO";
 const char* ssid = "iPhone";
 const char* password = "LolloBello";
 
-const char* server_ip = "192.168.137.1";
+const char* server_ip = "172.20.10.5";
 int server_port = 2048;
 
 WebServer server(80);
-
-static WiFiClient client;
 
 ServerUtilities::ServerUtilities(RobotMovement& robot, EmotionController& emotionController) 
 :
@@ -39,6 +39,10 @@ void ServerUtilities::setupRest() {
 
   server.on("/hello", [this]() {
     server.send(200, "text/plain", "Hello from esp8266 server web!");
+  });
+
+  server.on("/debug", [this]() {    
+    server.send(200, "text/plain", serialText);
   });
 
   server.on("/motor_position", [this]() {
@@ -126,7 +130,7 @@ void ServerUtilities::initConnection() {
   Serial.println(WiFi.localIP());
 }
 
-void ServerUtilities::serverConnection(WiFiClient client) {
+void ServerUtilities::serverConnection(WiFiClient& client) {
   // Server connection
   Serial.println();
   Serial.println("Connecting to Server...");
@@ -136,4 +140,8 @@ void ServerUtilities::serverConnection(WiFiClient client) {
   }
   Serial.println("Server connected");
   Serial.println();
+}
+
+void ServerUtilities::print(String string) {
+  serialText.concat(string);
 }

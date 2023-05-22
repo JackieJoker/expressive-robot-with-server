@@ -19,9 +19,10 @@ class ServerUtilities {
     void setupRest();
     void setupOTA();
     void initConnection();
-    void serverConnection(WiFiClient client);
+    void serverConnection(WiFiClient& client);
     void handleOTA();
     void handleClient();
+    void print(String string);
 };
 
 #endif

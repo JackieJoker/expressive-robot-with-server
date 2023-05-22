@@ -26,7 +26,7 @@ bool shortMovement = true;
 bool initialization = false;
 // if this variable is true the robot goes in the mounting position
 // (all the motors in idle except from lower and upper cap that goes in the closed position)
-bool calibration = true;
+bool calibration = false;
 
 static WiFiClient client;
 
@@ -83,7 +83,11 @@ void main_loop(void * pvParameters) {
         emotionFinished = false;
         timeStart = millis();  
         robotState newState = emotionController.nextEmotion();
-        Serial.println("React to the robot " + String(newState.toRobot) + " with " + newState.emotion + " with intensity " + String(newState.intensity));
+        
+        String toPrint = "React to the robot " + String(newState.toRobot) + " with " + newState.emotion + " with intensity " + String(newState.intensity);
+        serverUtilities.print(toPrint + '\n');
+        Serial.println(toPrint);
+        
         client.print("5" + newState.emotion + String(newState.toRobot) + String(newState.intensity));
         if(newState.emotion == 'A' && newState.emotion == 'F') {
           // idle
@@ -156,13 +160,16 @@ void main_loop(void * pvParameters) {
 }
 
 void network_loop(void * pvParameters) {
-  //serverUtilities.serverConnection(client);  
+  serverUtilities.serverConnection(client);  
   String incomingData;
   // Handle connection and receive from WiFi (updating state)
   while(true) {
     if(client.available())  {
       incomingData = client.readStringUntil('\n');
+
       Serial.println(incomingData);
+      serverUtilities.print(incomingData + '\n');
+
       serial_msg.concat(incomingData + "\n");
       
       Serial.println(incomingData.length());
