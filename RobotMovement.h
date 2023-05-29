@@ -15,25 +15,25 @@ class RobotMovement {
     VerticalServo lowerCap;
     VerticalServo upperCap;
 
-    void sayNo(unsigned long duration, int robotAngularPosition);       // to check    /30500
+    void sayNo(unsigned long duration, int robotAngularPosition);     
 
-    void beHappyLeft(unsigned long duration, int robotAngularPosition);     // okay        /85500
-    void beSadLeft(unsigned long duration, int robotAngularPosition);       // okay        /76500
-    void beAngryLeft(unsigned long duration, int robotAngularPosition);     // okay        /85500
-    void beSurprisedLeft(unsigned long duration, int robotAngularPosition); // not nice(to check behaviour next time together) /96000
-    void beAnnoyedLeft(unsigned long duration, int robotAngularPosition); // okay /79000
-    void beEmbarassedLeft(unsigned long duration, int robotAngularPosition);// okay /82000
-    void beCautiousLeft(unsigned long duration, int robotAngularPosition);  //same movement of beSurprised but with different gif
-    void beNeutralLeft(unsigned long duration, int robotAngularPosition);   // to check
+    void beHappyLeft(unsigned long duration, int robotAngularPosition);    
+    void beSadLeft(unsigned long duration, int robotAngularPosition);     
+    void beAngryLeft(unsigned long duration, int robotAngularPosition);     
+    void beSurprisedLeft(unsigned long duration, int robotAngularPosition); 
+    void beAnnoyedLeft(unsigned long duration, int robotAngularPosition); 
+    void beEmbarassedLeft(unsigned long duration, int robotAngularPosition);
+    void beCautiousLeft(unsigned long duration, int robotAngularPosition); 
+    void beNeutralLeft(unsigned long duration, int robotAngularPosition);   
     
     void beHappyRight(unsigned long duration, int robotAngularPosition);
-    void beSadRight(unsigned long duration, int robotAngularPosition);       // okay        /76500
-    void beAngryRight(unsigned long duration, int robotAngularPosition);     // okay        /85500
-    void beSurprisedRight(unsigned long duration, int robotAngularPosition); // not nice(to check behaviour next time together) /96000
-    void beAnnoyedRight(unsigned long duration, int robotAngularPosition); // okay /79000
-    void beEmbarassedRight(unsigned long duration, int robotAngularPosition);// okay /82000
-    void beCautiousRight(unsigned long duration, int robotAngularPosition);  //same movement of beSurprised but with different gif
-    void beNeutralRight(unsigned long duration, int robotAngularPosition);   // to check
+    void beSadRight(unsigned long duration, int robotAngularPosition);      
+    void beAngryRight(unsigned long duration, int robotAngularPosition);    
+    void beSurprisedRight(unsigned long duration, int robotAngularPosition); 
+    void beAnnoyedRight(unsigned long duration, int robotAngularPosition); 
+    void beEmbarassedRight(unsigned long duration, int robotAngularPosition);
+    void beCautiousRight(unsigned long duration, int robotAngularPosition); 
+    void beNeutralRight(unsigned long duration, int robotAngularPosition); 
 
     void beHappyShort1Left(unsigned long duration, int robotAngularPosition);    
     void beSadShort1Left(unsigned long duration, int robotAngularPosition);   
