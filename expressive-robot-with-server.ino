@@ -18,6 +18,8 @@ int timeIdle = 3000;
 bool emotionFinished = true;
 bool goIdle = true;
 
+bool sendGG = false;
+
 int groupNumber = 6;
 int intensity = 3;
 bool shortMovement = true;
@@ -28,7 +30,7 @@ bool initialization = false;
 // (all the motors in idle except from lower and upper cap that goes in the closed position)
 bool calibration = false;
 
-static WiFiClient client;
+static WiFiClient clientSuperGroup;
 
 TaskHandle_t Task1;
 TaskHandle_t Task2;
@@ -83,12 +85,16 @@ void main_loop(void * pvParameters) {
         emotionFinished = false;
         timeStart = millis();  
         robotState newState = emotionController.nextEmotion();
+
+        groupNumber = newState.toRobot;
+        intensity = newState.intensity;
         
         String toPrint = "React to the robot " + String(newState.toRobot) + " with " + newState.emotion + " with intensity " + String(newState.intensity);
         serverUtilities.print(toPrint + '\n');
         Serial.println(toPrint);
-        
-        client.print("5" + newState.emotion + String(newState.toRobot) + String(newState.intensity));
+        if (newState.emotion != 'A') {
+          clientSuperGroup.print("5" + String(newState.emotion) + String(newState.toRobot) + (newState.intensity <= 3? String(newState.intensity) : "3") + '\n');
+        }
         if(newState.emotion == 'A' && newState.emotion == 'F') {
           // idle
           ledMatrixController.showGif("0000_idle.gif");
@@ -128,11 +134,19 @@ void main_loop(void * pvParameters) {
           ledMatrixController.showGif("0005_disgusted.gif");
           mp3Controller.play(5);  
           robot.annoyed(timeMovement, groupNumber, intensity, shortMovement); 
-        } else if(newState.emotion == 'K') {  
-          // embarrassed  
-          ledMatrixController.showGif("0004_embarrassed.gif");
-          mp3Controller.play(4);  
-          robot.embarassed(timeMovement, groupNumber, intensity, shortMovement);
+        } else if(newState.emotion == 'K') { 
+          if (intensity == 4) {
+            // workout 
+            ledMatrixController.showGif("0009_workout.gif");
+            mp3Controller.play(4);  
+            robot.embarassed(timeMovement, groupNumber, intensity, shortMovement); 
+            sendGG = true;
+          } else {
+            // embarrassed  
+            ledMatrixController.showGif("0004_embarrassed.gif");
+            mp3Controller.play(4);  
+            robot.embarassed(timeMovement, groupNumber, intensity, shortMovement);            
+          }
         } else {
           // idle
           ledMatrixController.showGif("0000_idle.gif");
@@ -145,6 +159,10 @@ void main_loop(void * pvParameters) {
         goIdle = false;
         robot.idle(timeMovementIdle);
         ledMatrixController.showGif("0000_idle.gif");
+        if(sendGG) {
+          clientSuperGroup.print("GG" + '\n');
+          sendGG = false;
+        }
       }
 
       // When idle is reached
@@ -160,12 +178,12 @@ void main_loop(void * pvParameters) {
 }
 
 void network_loop(void * pvParameters) {
-  serverUtilities.serverConnection(client);  
+  serverUtilities.serverConnection(clientSuperGroup);  
   String incomingData;
   // Handle connection and receive from WiFi (updating state)
   while(true) {
-    if(client.available())  {
-      incomingData = client.readStringUntil('\n');
+    if(clientSuperGroup.available())  {
+      incomingData = clientSuperGroup.readStringUntil('\n');
 
       Serial.println(incomingData);
       serverUtilities.print(incomingData + '\n');

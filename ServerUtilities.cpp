@@ -1,18 +1,15 @@
 #include "ServerUtilities.h"
 
 String serialText = "";
-/*
-const char* ssid = "iPhone di Danilo";
-const char* password = "danilo99";
 
-const char* ssid = "LAPTOPANNA";
-const char* password = "CIAOCIAO";
-*/
-const char* ssid = "iPhone";
-const char* password = "LolloBello";
+const char* ssid2 = "Insert here your ssid";
+const char* password2 = "Insert here your password";
 
-const char* server_ip = "172.20.10.5";
-int server_port = 2048;
+const char* ssid = "Triskarone";
+const char* password = "triskarone";
+
+const char* server_ip = "192.168.1.103";
+int server_port = 8090;
 
 WebServer server(80);
 
@@ -54,6 +51,19 @@ void ServerUtilities::setupRest() {
     server.send(200, "text/plain", "emotion selected: " + emotion);
     emotionController.setRobotState((robotState){emotion.charAt(0), 5, 1});
     Serial.println("Emotion selected: " + emotion);
+  });
+
+  server.on("/set_emotion_2", HTTP_GET, [this]() {
+    String emotion =  server.arg("emotion");
+    String toRobot =  server.arg("toRobot");    
+    String intensity =  server.arg("intensity");
+    server.send(200, "text/plain", "emotion selected: " + emotion + " to the robot " + toRobot + " with intensity " + intensity);
+    emotionController.setRobotState((robotState){emotion.charAt(0), toRobot.toInt(), intensity.toInt()});
+    Serial.println("Emotion selected: " + emotion + " to the robot " + toRobot + " with intensity " + intensity);
+  });
+
+  server.on("/get_robots_emotion", HTTP_GET, [this]() {
+    server.send(200, "text/plain", emotionController.printRobotsState());
   });
 
   server.on("/get_emotion", [this]() {
@@ -119,9 +129,22 @@ void ServerUtilities::initConnection() {
   WiFi.begin(ssid, password);
 
   while (WiFi.waitForConnectResult() != WL_CONNECTED) {
-    Serial.println("Connection Failed! Rebooting...");
+    delay(5000);    
+    Serial.println("Failed connection to wifi, try to backup");
+    Serial.print("Connecting to ");
+    Serial.println(ssid2);
+
+    // WiFi connection
+    WiFi.mode(WIFI_STA);
+    WiFi.begin(ssid2, password2);
     delay(5000);
-    ESP.restart();
+    
+    while (WiFi.waitForConnectResult() != WL_CONNECTED) {
+      
+      Serial.println("Connection Failed! Rebooting...");
+      delay(5000);
+      ESP.restart();
+    }
   }
   
   Serial.println();
@@ -130,15 +153,18 @@ void ServerUtilities::initConnection() {
   Serial.println(WiFi.localIP());
 }
 
-void ServerUtilities::serverConnection(WiFiClient& client) {
+void ServerUtilities::serverConnection(WiFiClient& clientSuperGroup) {
   // Server connection
   Serial.println();
   Serial.println("Connecting to Server...");
-  while (!client.connect(server_ip, server_port)) {
+  print("Connecting to Server..." + '\n');
+  while (!clientSuperGroup.connect(server_ip, server_port)) {
     delay(1000);
     Serial.print(".");
+    print("." + '\n');
   }
   Serial.println("Server connected");
+  print("Server connected" + '\n');
   Serial.println();
 }
 

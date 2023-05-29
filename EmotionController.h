@@ -31,7 +31,7 @@ class EmotionController {
   bool flag_selected = false;
   robotState selectedState;
 
-  bool flag_active = false;
+  bool flag_active = true;
 
 
   public:

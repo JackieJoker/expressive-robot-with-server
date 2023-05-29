@@ -7,7 +7,7 @@ RobotMovement::RobotMovement()
   upperBody(HorizontalServo(1, 180, false, 180, 180)),
   head(HorizontalServo(2, 180, false, 180, 180)),
   lowerCap(VerticalServo(3, 127, true, 45, 0)),
-  upperCap(VerticalServo(4, 60, true, 0, 60))
+  upperCap(VerticalServo(4, 115, true, 0, 60))
 {
   //constructor    
 }
